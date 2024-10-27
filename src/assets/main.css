@@ -10,3 +10,19 @@ html, body{
 .gradient-bg {
   background: linear-gradient(to top right, #571158, #8D348E);
 }
+
+.ev-input {
+  appearance: none;
+  font-size: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 0.25rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  outline: none;
+  transition: border-color 0.1s ease;
+}
+
+.ev-input:focus {
+  border-color: #571158;
+  background: none;
+}

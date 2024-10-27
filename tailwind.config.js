@@ -13,6 +13,11 @@ export default {
       maxHeight : {
         '982px' : '982px',
       },
+      colors: {
+        evPurple: '#571158',
+        evPurpleAlt: '#8D348E',
+        evGray: '#6C757D',
+      },
     },
   },
   plugins: [],

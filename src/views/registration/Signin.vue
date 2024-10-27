@@ -1,61 +1,57 @@
 <template>
-  <div class="flex h-full items-center justify-center min-h-screen bg-gray-100">
+  <div class="flex h-full items-center justify-center min-h-screen bg-gray-200">
     <div class="flex w-full max-w-1512px h-full max-h-982px">
-
-      <!-- Left Section: Form -->
-      <div class="w-1/2">
-        <form @submit.prevent="handleSubmit" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <h2 class="text-center text-2xl font-bold mb-5">Login</h2>
-          
-          <!-- Email Input Field -->
-          <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+      <div class="w-1/2 pt-24 pb-32 bg-white flex justify-center">
+        <form @submit.prevent="handleSubmit" class="px-8 pt-6 pb-8 mb-4 w-full max-w-lg">
+          <h2 class="tracking-wide text-4xl font-black mt-20 mb-4 ml-4">Sign In</h2>    
+          <p class="mt-0.5 mb-5 text-sm pr-2">
+            Welcome to Email Vault, please enter your login credentials below to start using the application.
+          </p>
+          <div class="mb-8 ml-4 pr-1">
+            <label class="block text-evGray text-sm font-bold mb-2" for="email">Email</label>
             <input
               v-model="email"
               type="email"
               id="email"
               placeholder="Enter your email"
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="ev-input"
               required
             />
           </div>
-          
-          <!-- Password Input Field -->
-          <div class="mb-4 relative">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
+          <div class="mb-2 ml-4 pr-1 relative">
+            <label class="block text-evGray text-sm font-bold mb-2" for="password">Password</label>
             <input
               v-model="password"
               :type="showPassword ? 'text' : 'password'"
               id="password"
               placeholder="Enter your password"
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pr-10"
+              class="ev-input     "
               required
             />
-            <button type="button" @click="togglePasswordVisibility" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+            <button type="button" @click="togglePasswordVisibility" class="absolute inset-y-12 right-0 pr-3 flex items-center">
               <font-awesome-icon 
                 :icon="showPassword ? ['far', 'eye-slash'] : ['far', 'eye']" 
-                class="text-blue-500 shadow-lg"
+                class="text-evPurple"
               />
             </button>
-          </div>
+          </div>  
 
           <!-- Forgot Password link -->
           <div class="mb-4 text-right">
-            <router-link to="/forgot-password" class="text-blue-500 hover:text-blue-700 text-sm">Forgot Password?</router-link>
+            <router-link to="/forgot-password" class="text-evPurple hover:text-evPurpleAlt text-xs">Forgot password ?</router-link>
           </div>
           
-          <div class="flex items-center justify-between">
+          <div class="flex items-end justify-right mt-7">
             <button
               type="submit"
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              class="bg-evPurple hover:bg-evPurpleAlt text-white text-sm py-2 px-11 rounded focus:outline-none focus:shadow-outline shadow-md shadow-neutral-700"
             >
-              Login
+              Sign In
             </button>
           </div>
 
-          <!-- Create Account link -->
-          <div class="mt-4 text-center">
-            <router-link to="/signup" class="text-blue-500 hover:text-blue-700 text-sm">Create Account</router-link>
+          <div class="mt-4 text-center border-t shadow-zinc-400 mt-11 pt-5">
+            <span>Don't have an account? </span><router-link to="/signup" class="text-evPurple hover:text-evPurpleAlt text-sm">Create Account</router-link>
           </div>
         </form>
       </div>

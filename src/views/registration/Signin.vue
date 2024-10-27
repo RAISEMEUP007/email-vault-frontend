@@ -50,8 +50,8 @@
             </button>
           </div>
 
-          <div class="mt-4 text-center border-t shadow-zinc-400 mt-11 pt-5">
-            <span>Don't have an account? </span><router-link to="/signup" class="text-evPurple hover:text-evPurpleAlt text-sm">Create Account</router-link>
+          <div class="mt-4 text-center border-t shadow-zinc-500 mt-12 pt-5">
+            <span class="font-sm">Don't have an account? </span><router-link to="/signup" class="text-evPurple hover:text-evPurpleAlt text-sm">Create Account</router-link>
           </div>
         </form>
       </div>

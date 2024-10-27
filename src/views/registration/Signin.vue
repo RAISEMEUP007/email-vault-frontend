@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-full items-center justify-center min-h-screen bg-gray-200">
+  <div class="flex h-full items-center justify-center min-h-screen bg-gray-200 p-2">
     <div class="flex w-full max-w-1512px h-full max-h-982px">
       <div class="w-1/2 pt-24 pb-32 bg-white flex justify-center">
         <form @submit.prevent="handleSubmit" class="px-8 pt-6 pb-8 mb-4 w-full max-w-lg">

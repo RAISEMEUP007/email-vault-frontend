@@ -7,6 +7,12 @@ export default {
       fontFamily: {
         sans: ['Nunito Sans', 'Helvetica', 'Arial', 'sans-serif'],
       },
+      width:{
+        '88px' : '88px',
+      },
+      height:{
+        '88px' : '88px',
+      },
       maxWidth : {
         '1512px' : '1512px',
       },

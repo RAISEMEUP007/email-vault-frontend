@@ -1,6 +1,6 @@
 <template>
-  <div class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="w-full max-w-1512px max-h-982px screen-2xl flex">
+  <div class="bg-gray-100">
+    <div class="flex w-full max-w-1512px h-full max-h-982px">
 
       <!-- Left Section: Form -->
       <div class="w-1/2">
@@ -61,7 +61,7 @@
       </div>
 
       <!-- Right Section: Description -->
-      <div class="w-1/2 pt-24 pb-40" style="background-color: #5F1660;">
+      <div class="w-1/2 pt-24 pb-32" style="background-color: #5F1660;">
         <div class="p-8 flex flex-col row items-center justify-center text-white">
           <img src="@/assets/img/1.png" alt="Welcome Image" class="mt-5 rounded shadow-md" />
           <div class="max-w-sm">

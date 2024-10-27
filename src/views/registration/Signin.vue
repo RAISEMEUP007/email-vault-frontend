@@ -41,7 +41,7 @@
             <router-link to="/forgot-password" class="text-evPurple hover:text-evPurpleAlt text-xs">Forgot password ?</router-link>
           </div>
           
-          <div class="flex items-end justify-right mt-7">
+          <div class="flex items-end justify-end mt-7">
             <button
               type="submit"
               class="bg-evPurple hover:bg-evPurpleAlt text-white text-sm py-2 px-11 rounded focus:outline-none focus:shadow-outline shadow-md shadow-neutral-700"

@@ -8,7 +8,7 @@
             Welcome to Email Vault, please enter your login credentials below to start using the application.
           </p>
           <div class="mb-8 ml-4 pr-1">
-            <label class="block text-evGray text-sm font-bold mb-2" for="email">Email</label>
+            <label class="block text-evGray text-sm font-bold mb-1.5" for="email">Email</label>
             <input
               v-model="email"
               type="email"
@@ -19,7 +19,7 @@
             />
           </div>
           <div class="mb-2 ml-4 pr-1 relative">
-            <label class="block text-evGray text-sm font-bold mb-2" for="password">Password</label>
+            <label class="block text-evGray text-sm font-bold mb-1.5" for="password">Password</label>
             <input
               v-model="password"
               :type="showPassword ? 'text' : 'password'"
@@ -28,10 +28,10 @@
               class="ev-input     "
               required
             />
-            <button type="button" @click="togglePasswordVisibility" class="absolute inset-y-12 right-0 pr-3 flex items-center">
+            <button type="button" @click="togglePasswordVisibility" class="absolute mt-0.5 inset-y-11 right-0 pr-3 flex items-center">
               <font-awesome-icon 
                 :icon="showPassword ? ['far', 'eye-slash'] : ['far', 'eye']" 
-                class="text-evPurple"
+                class="text-evPurple text-lg"
               />
             </button>
           </div>  

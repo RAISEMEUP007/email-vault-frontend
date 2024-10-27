@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="mt-4 text-center mt-12 max-w-lg">
-          <span class="font-sm">Did you enter the wrong email address? Please reach out to us for assistance at</span>
+          <span class="font-sm">Did you enter the wrong email address? Please reach out to us for assistance at </span>
           <router-link class="text-evPurple hover:text-evPurpleAlt text-sm">support@emailvault.app</router-link>
         </div>
       </div>

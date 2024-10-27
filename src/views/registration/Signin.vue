@@ -29,7 +29,10 @@
             required
           />
           <button type="button" @click="togglePasswordVisibility" class="absolute inset-y-0 right-0 pr-3 flex items-center">
-            <i :class="showPassword ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
+            <font-awesome-icon 
+              :icon="showPassword ? ['far', 'eye-slash'] : ['far', 'eye']" 
+              class="text-blue-500 shadow-lg"
+            />
           </button>
         </div>
 

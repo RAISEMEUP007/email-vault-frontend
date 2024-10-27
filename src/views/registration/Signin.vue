@@ -61,24 +61,18 @@
       </div>
 
       <!-- Right Section: Description -->
-      <div class="w-1/2 pt-24 pb-32  gradient-bg">
-        <div class="p-8 flex flex-col row items-center justify-center text-white">
-          <img src="@/assets/img/1.png" alt="Welcome Image" class="mt-5 rounded shadow-md" />
-          <div class="max-w-sm">
-            <h1 class="text-center text-4xl font-bold mt-14 mb-10">Email Vault</h1>
-            <p class="text-center text-xl">
-              Our email journaling solution grants you security, compliance, and peace of mind.
-            </p>
-          </div>
-        </div>
-      </div>
-
+      <Description widthClass="w-1/2"/>
     </div>
   </div>
 </template>
 
 <script>
+import Description from '@/components/registration/Description.vue'
+
 export default {
+  components: {
+    Description
+  },
   data() {
     return {
       email: '',

@@ -4,18 +4,20 @@
       <form @submit.prevent="handleSubmit" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <h2 class="text-center text-2xl font-bold mb-5">Login</h2>
 
+        <!-- Email Input Field -->
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Username</label>
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
           <input
-            v-model="username"
-            type="text"
-            id="username"
-            placeholder="Enter your username"
+            v-model="email"
+            type="email"
+            id="email"
+            placeholder="Enter your email"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             required
           />
         </div>
 
+        <!-- Password Input Field -->
         <div class="mb-4 relative">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
           <input
@@ -27,8 +29,13 @@
             required
           />
           <button type="button" @click="togglePasswordVisibility" class="absolute inset-y-0 right-0 pr-3 flex items-center">
-            wefwe
+            <i :class="showPassword ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
           </button>
+        </div>
+
+        <!-- Forgot Password link -->
+        <div class="mb-4 text-right">
+          <router-link to="/forgot-password" class="text-blue-500 hover:text-blue-700 text-sm">Forgot Password?</router-link>
         </div>
 
         <div class="flex items-center justify-between">
@@ -39,6 +46,11 @@
             Login
           </button>
         </div>
+
+        <!-- Create Account link -->
+        <div class="mt-4 text-center">
+          <router-link to="/signup" class="text-blue-500 hover:text-blue-700 text-sm">Create Account</router-link>
+        </div>
       </form>
     </div>
   </div>
@@ -48,16 +60,16 @@
 export default {
   data() {
     return {
-      username: '',
+      email: '',
       password: '',
       showPassword: false,
     };
   },
   methods: {
     handleSubmit() {
-      console.log(`Username: ${this.username}, Password: ${this.password}`);
-      this.username = '';
-      this.password = '';
+      console.log(`Email: ${this.email}, Password: ${this.password}`);
+      this.email = ''; // Clear the email when done
+      this.password = ''; // Clear the password when done
     },
     togglePasswordVisibility() {
       this.showPassword = !this.showPassword;
@@ -67,5 +79,5 @@ export default {
 </script>
 
 <style scoped>
-/* You can add additional styles here if needed */
+/* Additional styles can be added here if necessary */
 </style>

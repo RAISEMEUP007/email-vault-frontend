@@ -2,17 +2,17 @@
   <div class="flex h-full items-center justify-center min-h-screen bg-gray-200 p-2">
     <div class="flex w-full max-w-1512px h-full max-h-982px">
       <div class="w-1/2 pt-24 pb-32 bg-white flex justify-center">
-        <form @submit.prevent="handleSubmit" class="px-8 pt-6 pb-8 mb-4 w-full max-w-lg">
-          <h2 class="tracking-wide text-4xl font-black mt-20 mb-4 ml-4">Sign In</h2>
+        <form @submit.prevent="handleSubmit" class="pt-6 pb-8 mb-4 w-full max-w-md">
+          <h2 class="tracking-wide text-4xl font-black mt-20 mb-4">Sign In</h2>
           <p class="mt-0.5 mb-5 text-sm pr-2">
             Welcome to Email Vault, please enter your login credentials below to start using the application.
           </p>
           
-          <div class="mb-8 ml-4 pr-1">
+          <div class="mb-8 pr-1">
             <label class="block text-evGray text-sm font-bold mb-1.5" for="email">Email</label>
             <input v-model="email" type="email" id="email" placeholder="Enter your email" class="ev-input" required />
           </div>
-          <div class="mb-2 ml-4 pr-1 relative">
+          <div class="mb-2 pr-1 relative">
             <label class="block text-evGray text-sm font-bold mb-1.5" for="password">Password</label>
             <input v-model="password" :type="showPassword ? 'text' : 'password'" id="password" placeholder="Enter your password" class="ev-input" required />
             <button type="button" @click="togglePasswordVisibility" class="absolute mt-0.5 inset-y-11 right-0 pr-3 flex items-center">

@@ -42,7 +42,7 @@ export default {
 
       const disabledClasses = this.disabled 
         ? 'bg-evPurpleDisable cursor-not-allowed text-white'
-        : 'bg-evPurple hover:bg-evPurpleAlt text-white';
+        : 'bg-evPurple hover:bg-evPurpleAlt text-white evPurpleButtonShadow';
 
       return `${baseClasses} ${sizeClasses[this.size]} ${disabledClasses}`;
     },
@@ -57,3 +57,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.evPurpleButtonShadow{
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+</style>

@@ -41,7 +41,7 @@
               maxlength="100"
               required
             />
-            <p v-if="!isEmailValid && isBlurred && email !== ''" class="text-red-600 text-xs mt-1 font-semibold">
+            <p v-if="!isEmailValid && isBlurred && email !== ''" class="text-evError text-xs mt-1 font-semibold">
               Invalid email format
             </p>
           </div>
@@ -67,33 +67,33 @@
             </button>
 
             <!-- Tooltip for Password Validation -->
-            <div v-if="passwordFeedback" class="absolute bg-white border p-2 rounded shadow-lg text-xs text-evGray mt-1 w-72 left-full top-0">
-              <p class="mt-0.5 mb-4 text-sm pr-2">
+            <div v-if="passwordFeedback" class="absolute bg-white border p-3 rounded shadow-lg text-xs mt-1 w-72 left-full top-0">
+              <p class="mt-1 mb-2 text-xs pr-2 font-bold">
                 Please fulfill the below requirements:
               </p>
-              <p class="flex items-center mt-2 justify-between">
-                <span :class="validLength ? 'text-green-600' : 'text-red-600'">At least 8 characters</span>
-                <font-awesome-icon :icon="validLength ? ['fas', 'circle-check'] : ['fas', 'circle-xmark']" :class="{'text-green-600': validLength, 'text-red-600': !validLength}" />
+              <p class="flex items-center font-semibold mt-2.5 justify-between">
+                <span :class="validLength ? 'text-evSuccess' : 'text-evError'">At least 8 characters</span>
+                <font-awesome-icon :icon="validLength ? ['fas', 'circle-check'] : ['fas', 'circle-xmark']" :class="{'text-evSuccess': validLength, 'text-evError': !validLength}" />
               </p>
 
-              <p class="flex items-center mt-2 justify-between">
-                <span :class="validUppercase ? 'text-green-600' : 'text-red-600'">At least 1 uppercase letter</span>
-                <font-awesome-icon :icon="validUppercase ? ['fas', 'circle-check'] : ['fas', 'circle-xmark']" :class="{'text-green-600': validUppercase, 'text-red-600': !validUppercase}" />
+              <p class="flex items-center font-semibold mt-2 justify-between">
+                <span :class="validUppercase ? 'text-evSuccess' : 'text-evError'">At least 1 uppercase letter</span>
+                <font-awesome-icon :icon="validUppercase ? ['fas', 'circle-check'] : ['fas', 'circle-xmark']" :class="{'text-evSuccess': validUppercase, 'text-evError': !validUppercase}" />
               </p>
 
-              <p class="flex items-center mt-2 justify-between">
-                <span :class="validLowercase ? 'text-green-600' : 'text-red-600'">At least 1 lowercase letter</span>
-                <font-awesome-icon :icon="validLowercase ? ['fas', 'circle-check'] : ['fas', 'circle-xmark']" :class="{'text-green-600': validLowercase, 'text-red-600': !validLowercase}" />
+              <p class="flex items-center font-semibold mt-2 justify-between">
+                <span :class="validLowercase ? 'text-evSuccess' : 'text-evError'">At least 1 lowercase letter</span>
+                <font-awesome-icon :icon="validLowercase ? ['fas', 'circle-check'] : ['fas', 'circle-xmark']" :class="{'text-evSuccess': validLowercase, 'text-evError': !validLowercase}" />
               </p>
 
-              <p class="flex items-center mt-2 justify-between">
-                <span :class="validNumber ? 'text-green-600' : 'text-red-600'">At least 1 number</span>
-                <font-awesome-icon :icon="validNumber ? ['fas', 'circle-check'] : ['fas', 'circle-xmark']" :class="{'text-green-600': validNumber, 'text-red-600': !validNumber}" />
+              <p class="flex items-center font-semibold mt-2 justify-between">
+                <span :class="validNumber ? 'text-evSuccess' : 'text-evError'">At least 1 number</span>
+                <font-awesome-icon :icon="validNumber ? ['fas', 'circle-check'] : ['fas', 'circle-xmark']" :class="{'text-evSuccess': validNumber, 'text-evError': !validNumber}" />
               </p>
 
-              <p class="flex items-center mt-2 justify-between">
-                <span :class="validSpecial ? 'text-green-600' : 'text-red-600'">At least 1 special character</span>
-                <font-awesome-icon :icon="validSpecial ? ['fas', 'circle-check'] : ['fas', 'circle-xmark']" :class="{'text-green-600': validSpecial, 'text-red-600': !validSpecial}" />
+              <p class="flex items-center font-semibold mt-2 justify-between">
+                <span :class="validSpecial ? 'text-evSuccess' : 'text-evError'">At least 1 special character</span>
+                <font-awesome-icon :icon="validSpecial ? ['fas', 'circle-check'] : ['fas', 'circle-xmark']" :class="{'text-evSuccess': validSpecial, 'text-evError': !validSpecial}" />
               </p>
             </div>
           </div>

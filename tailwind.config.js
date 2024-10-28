@@ -26,6 +26,8 @@ export default {
         evTextColor: '#000000CC',
         evGray: '#6C757D',
         evGrayLight: '#777777CC',
+        evError: '#FC5A5A',
+        evSuccess: '#42A496',
       },
     },
   },

@@ -15,7 +15,7 @@ html, body{
   appearance: none;
   font-size: 14px;
   border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 0.25rem;
+  border-radius: 6px;
   width: 100%;
   padding: 0.5rem 0.75rem;
   outline: none;
@@ -25,4 +25,20 @@ html, body{
 .ev-input:focus {
   border-color: #571158;
   background: none;
+}
+
+.ev-input:placeholder-shown {
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+.ev-input:not(:placeholder-shown) {
+  border-color: #571158;
+}
+
+input[type='email'].valid {
+  border-color: #571158;
+}
+
+input[type='email'].invalid {
+  border-color: #dc3545;
 }

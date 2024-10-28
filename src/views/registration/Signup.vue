@@ -128,8 +128,9 @@
             </button>
             <span class="text-evTextColor text-sm">
               I agree to the 
-              <router-link to="" class="text-evPurple hover:text-evPurpleAlt text-sm underline">Terms and Conditions</router-link> and 
-              <router-link to="" class="text-evPurple hover:text-evPurpleAlt text-sm underline">Privacy Policy</router-link>
+              <button type="button" @click="openTermsModal" class="text-evPurple hover:text-evPurpleAlt text-sm underline">Terms and Conditions</button>
+              and 
+              <button type="button" @click="openPrivacyModal" class="text-evPurple hover:text-evPurpleAlt text-sm underline">Privacy Policy</button>
             </span>
           </div>
 
@@ -149,13 +150,19 @@
         </form>
         <FooterText />
       </div>
+
       <Description widthClass="w-1/2" />
     </div>
+
+    <TermsAndConditionsModal :isVisible="isTermsModalVisible" @close="closeTermsModal" />
+    <PrivacyAndPolicyModal :isVisible="isPrivacyModalVisible" @close="closePrivacyModal" />
   </div>
 </template>
 
 <script>
 import EVPurpleButton from '@/components/common/EVPurpleButton.vue';
+import TermsAndConditionsModal from '@/components/common/TermsAndConditionsModal.vue';
+import PrivacyAndPolicyModal from '@/components/common/TermsAndConditionsModal.vue';
 import Description from '@/components/registration/Description.vue';
 import FooterText from '@/components/registration/FooterText.vue';
 
@@ -164,6 +171,8 @@ export default {
     EVPurpleButton,
     Description,
     FooterText,
+    TermsAndConditionsModal,
+    PrivacyAndPolicyModal,
   },
   
   data() {
@@ -178,13 +187,14 @@ export default {
       isBlurred: false,
       showPassword: false,
       agreedToTerms: false,
-      // Password validation flags
       validLength: false,
       validUppercase: false,
       validLowercase: false,
       validNumber: false,
       validSpecial: false,
-      passwordFeedback: false, // To show/hide the tooltip
+      passwordFeedback: false,
+      isTermsModalVisible: false,
+      isPrivacyModalVisible: false,
     };
   },
   
@@ -281,6 +291,18 @@ export default {
     },
     Blurpassword() {
       this.passwordFeedback = false
+    },
+    openTermsModal() {
+      this.isTermsModalVisible = true;
+    },
+    closeTermsModal() {
+      this.isTermsModalVisible = false;
+    },
+    openPrivacyModal() {
+      this.isPrivacyModalVisible = true;
+    },
+    closePrivacyModal() {
+      this.isPrivacyModalVisible = false;
     },
   },
 };

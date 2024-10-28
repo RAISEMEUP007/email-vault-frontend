@@ -15,9 +15,11 @@ export default {
       },
       maxWidth : {
         '1512px' : '1512px',
+        '874px' : '874px',
       },
       maxHeight : {
         '982px' : '982px',
+        '467px' : '467px'
       },
       spacing: {
         '45px': '45px',

@@ -22,6 +22,7 @@ export default {
       colors: {
         evPurple: '#571459',
         evPurpleAlt: '#8D348E',
+        evPurpleDisable: '#E6DDE7',
         evTextColor: '#000000CC',
         evGray: '#6C757D',
         evGrayLight: '#777777CC',

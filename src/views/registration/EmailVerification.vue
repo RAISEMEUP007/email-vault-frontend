@@ -11,7 +11,7 @@
             <p class="mt-0.5 mb-5 text-lg pr-2">
               To activate your account, just click on the link in the email. If you can’t locate it, please have a look in your spam folder.
             </p>
-            <div class="mt-4 text-center border-t shadow-zinc-500 mt-12 pt-6">
+            <div class="mt-4 text-center border-t mt-12 pt-6">
               <span class="font-sm">Haven’t received any email? </span>
               <router-link class="text-evPurple hover:text-evPurpleAlt text-sm font-semibold">Resend Email</router-link>
             </div>

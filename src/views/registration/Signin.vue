@@ -20,7 +20,6 @@
               @focus="isBlurred = true"
               :class="{
                 'border-red-500': !isEmailValid && isBlurred && email !== '',
-                'border-green-500': isEmailValid && isBlurred
               }"
               maxlength="100"
               required
@@ -49,7 +48,7 @@
           <div class="flex items-end justify-end mt-7">
             <EVPurpleButton type="submit" size="medium">Sign In</EVPurpleButton>
           </div>
-          <div class="text-center border-t shadow-zinc-500 mt-12 pt-5">
+          <div class="text-center border-t mt-12 pt-5">
             <span class="text-sm text-evTextColor">Don't have an account? </span>
             <router-link to="/signup" class="text-evPurple hover:text-evPurpleAlt text-sm font-semibold">Create Account</router-link>
           </div>

@@ -38,7 +38,7 @@
               class="ev-input pr-8 focus:ring-1 focus:ring-purple-800"
               maxlength="100" 
               required />
-            <button type="button" @click="togglePasswordVisibility" class="absolute mt-0.5 inset-y-11 right-0 pr-3 flex items-center">
+            <button type="button" @click="togglePasswordVisibility" class="absolute top-9 right-0 pr-3 flex items-center">
               <font-awesome-icon :icon="showPassword ? ['far', 'eye-slash'] : ['far', 'eye']" class="text-evPurple text-lg" />
             </button>
           </div>

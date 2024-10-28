@@ -19,6 +19,10 @@ export default {
       maxHeight : {
         '982px' : '982px',
       },
+      spacing: {
+        '45px': '45px',
+        '38px': '38px',
+      },
       colors: {
         evPurple: '#571459',
         evPurpleAlt: '#8D348E',
@@ -26,8 +30,10 @@ export default {
         evTextColor: '#000000CC',
         evGray: '#6C757D',
         evGrayLight: '#777777CC',
+        evLight: '#DADADA',
         evError: '#FC5A5A',
         evSuccess: '#42A496',
+        evWarning: '#FDC23A',
       },
     },
   },

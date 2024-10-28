@@ -11,19 +11,19 @@
           <!-- First Name -->
           <div class="mb-2.5 pr-1">
             <label class="block text-evGray text-sm mb-1" for="firstName">First Name<span class="text-evPurple text-base ml-1">*</span></label>
-            <input v-model="firstName" type="text" id="firstName" placeholder="Enter your first name" class="ev-input focus:ring-1 focus:ring-purple-800" required />
+            <input v-model="firstName" type="text" id="firstName" placeholder="Enter your first name" class="ev-input focus:ring-1 focus:ring-purple-800" maxlength="100" required />
           </div>
 
           <!-- Last Name -->
           <div class="mb-2.5 pr-1">
             <label class="block text-evGray text-sm mb-1" for="lastName">Last Name<span class="text-evPurple text-base ml-1">*</span></label>
-            <input v-model="lastName" type="text" id="lastName" placeholder="Enter your last name" class="ev-input focus:ring-1 focus:ring-purple-800" required />
+            <input v-model="lastName" type="text" id="lastName" placeholder="Enter your last name" class="ev-input focus:ring-1 focus:ring-purple-800" maxlength="100" required />
           </div>
 
           <!-- Company Name -->
           <div class="mb-2.5 pr-1">
             <label class="block text-evGray text-sm mb-1" for="companyName">Company Name<span class="text-evPurple text-base ml-1">*</span></label>
-            <input v-model="companyName" type="text" id="companyName" placeholder="Enter your company name" class="ev-input focus:ring-1 focus:ring-purple-800" required />
+            <input v-model="companyName" type="text" id="companyName" placeholder="Enter your company name" class="ev-input focus:ring-1 focus:ring-purple-800" maxlength="100" required />
           </div>
 
           <!-- Email -->
@@ -47,22 +47,38 @@
           </div>
 
           <div class="mb-2.5 pr-1 relative">
-            <label class="block text-evGray text-sm mb-1" for="password">
-              Password<span class="text-evPurple text-base ml-1">*</span>
-            </label>
+            <div class="flex flex-row items-center justify-between">
+              <label class="block text-evGray text-sm mb-1" for="password">
+                Password<span class="text-evPurple text-base ml-1">*</span>
+              </label>
+
+              <!-- Progress Bar -->
+              <div class="h-1 rounded flex">
+                  <div
+                      :class="['h-full w-9 ml-1 rounded', progressClass1, 'transition-all duration-300']"
+                  ></div>
+                  <div
+                      :class="['h-full w-9 ml-1 rounded', progressClass2, 'transition-all duration-300']"
+                  ></div>
+                  <div
+                      :class="['h-full w-9 ml-1 rounded', progressClass3, 'transition-all duration-300']"
+                  ></div>
+              </div>
+
+            </div>
             <input
               v-model="password"
               :type="showPassword ? 'text' : 'password'"
               id="password"
               placeholder="Enter your password"
-              class="ev-input focus:ring-1 focus:ring-purple-800"
+              class="ev-input pr-8 focus:ring-1 focus:ring-purple-800"
               maxlength="100"
               required
               @input="validatePassword"
               @blur="Blurpassword"
             />
 
-            <button type="button" @click="togglePasswordVisibility" class="absolute mt-0.5 inset-y-11 right-0 pr-3 flex items-center">
+            <button type="button" @click="togglePasswordVisibility" class="absolute top-38px right-0 pr-3 flex items-center">
               <font-awesome-icon :icon="showPassword ? ['far', 'eye-slash'] : ['far', 'eye']" class="text-evPurple text-lg" />
             </button>
 
@@ -102,7 +118,7 @@
           <!-- Referral Code -->
           <div class="mb-4 pr-1">
             <label class="block text-evGray text-sm mb-1" for="referralCode">Referral Code</label>
-            <input v-model="referralCode" type="text" id="referralCode" placeholder="Enter referral code" class="ev-input focus:ring-1 focus:ring-purple-800" />
+            <input v-model="referralCode" type="text" id="referralCode" placeholder="Enter referral code" class="ev-input focus:ring-1 focus:ring-purple-800" maxlength="12"/>
           </div>
 
           <!-- Checkbox for Terms and Conditions -->
@@ -187,6 +203,34 @@ export default {
         this.validNumber &&
         this.validSpecial
       );
+    },
+    strength() {
+      let score = 0;
+      if (this.password.length >= 8) score += 20; // Length
+      if (/[A-Z]/.test(this.password)) score += 20; // Uppercase
+      if (/[a-z]/.test(this.password)) score += 20; // Lowercase
+      if (/\d/.test(this.password)) score += 20; // Number
+      if (/[@$!%*?&]/.test(this.password)) score += 20; // Special character
+
+      return score;
+    },
+    progressClass1() {
+      if (this.strength == 0) return 'bg-transparent'
+      if (this.strength <= 40) return 'bg-evError';
+      if (this.strength <= 80) return 'bg-evWarning';
+      return 'bg-evSuccess';
+    },
+    progressClass2() {
+      if (this.strength == 0) return 'bg-transparent'
+      if (this.strength <= 40) return 'bg-evLight';
+      if (this.strength <= 80) return 'bg-evWarning';
+      return 'bg-evSuccess';
+    },
+    progressClass3() {
+      if (this.strength == 0) return 'bg-transparent'
+      if (this.strength <= 40) return 'bg-evLight';
+      if (this.strength <= 80) return 'bg-evLight';
+      return 'bg-evSuccess';
     },
   },
   

@@ -20,12 +20,13 @@ export default {
         '982px' : '982px',
       },
       colors: {
-        evPurple: '#571158',
+        evPurple: '#571459',
         evPurpleAlt: '#8D348E',
+        evTextColor: '#000000CC',
         evGray: '#6C757D',
+        evGrayLight: '#777777CC',
       },
     },
   },
   plugins: [],
 }
-

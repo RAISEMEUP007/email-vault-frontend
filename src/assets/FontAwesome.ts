@@ -1,8 +1,11 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
-import {  faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
+import { faEye, faEyeSlash, faSquare } from "@fortawesome/free-regular-svg-icons";
+import { faSquareCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 library.add(faEye);
 library.add(faEyeSlash);
+library.add(faSquareCheck);
+library.add(faSquare);
 
 export { FontAwesomeIcon };

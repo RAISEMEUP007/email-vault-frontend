@@ -5,6 +5,7 @@ import Signup from '@/views/registration/Signup.vue'
 import VerifyCode from '@/views/registration/VerifyCode.vue'
 import EmailVerification from '@/views/registration/EmailVerification.vue'
 import NotFound from '@/views/errors/NotFound.vue';
+import AddBillingMethod from '@/views/registration/AddBillingMethod.vue';
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: '/emailverification',
     name: 'EmailVerification',
     component: EmailVerification
+  },
+  {
+    path: '/addbillingmethod',
+    name: 'AddBillingMethod',
+    component: AddBillingMethod
   },
   {
     path: '/:catchAll(.*)',

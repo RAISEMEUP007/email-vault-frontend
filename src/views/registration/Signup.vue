@@ -1,8 +1,8 @@
 <template>
-  <div class="flex h-full items-center justify-center min-h-screen bg-gray-200 p-2">
-    <div class="flex w-full max-w-1512px h-full max-h-982px">
+  <div class="flex flex-col h-full items-center justify-center min-h-screen bg-gray-200 p-2">
+    <div class="flex-1 flex w-full max-w-1512px h-full max-h-982px">
       <div class="w-1/2 pt-6 pb-5 bg-white flex flex-col items-center">
-        <form @submit.prevent="handleSubmit" class="flex-1 pt-16 w-full max-w-md">
+        <form @submit.prevent="handleSubmit" class="flex-1 pt-16 px-1 w-full max-w-md">
           <h2 class="tracking-wide text-4xl font-black mt-4 mb-6">Create Account</h2>
           <p class="mt-0.5 mb-4 text-sm pr-2">
             Welcome to Email Vault, please enter your details below to create an account.
@@ -116,7 +116,7 @@
 
 
           <!-- Referral Code -->
-          <div class="mb-4 pr-1">
+          <div class="mb-5 pr-1">
             <label class="block text-evGray text-sm mb-1" for="referralCode">Referral Code</label>
             <input v-model="referralCode" type="text" id="referralCode" placeholder="Enter referral code" class="ev-input focus:ring-1 focus:ring-purple-800" maxlength="12"/>
           </div>
@@ -143,7 +143,7 @@
             <router-link to="" class="text-evPurple hover:text-evPurpleAlt text-sm font-semibold">Sign Up here</router-link>
           </div>
 
-          <div class="text-center">
+          <div class="text-center mb-6">
             <span class="text-sm">Already have an account? </span>
             <router-link to="/signin" class="text-evPurple hover:text-evPurpleAlt text-sm font-semibold">Sign In</router-link>
           </div>

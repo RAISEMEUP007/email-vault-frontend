@@ -1,3 +1,176 @@
+<script lang="ts">
+import { defineComponent, ref, computed } from 'vue';
+import { useFormStore } from '@/stores/useFormStore';
+import EVPurpleButton from '@/components/common/EVPurpleButton.vue';
+import TermsAndConditionsModal from '@/components/common/TermsAndConditionsModal.vue';
+import PrivacyAndPolicyModal from '@/components/common/PrivacyAndPolicyModal.vue';
+import Description from '@/components/registration/Description.vue';
+import FooterText from '@/components/registration/FooterText.vue';
+import { useRouter } from 'vue-router';
+
+export default defineComponent({
+  components: {
+    EVPurpleButton,
+    Description,
+    FooterText,
+    TermsAndConditionsModal,
+    PrivacyAndPolicyModal,
+  },
+
+  setup() {
+    const router = useRouter();
+    const formStore = useFormStore(); 
+
+    const showPassword = ref<boolean>(false);
+    const agreedToTerms = ref<boolean>(false);
+    const passwordFeedback = ref<boolean>(false);
+    const isEmailValid = ref<boolean>(true);
+    const isBlurred = ref<boolean>(false);
+
+    // Password validation flags
+    const validLength = ref<boolean>(false);
+    const validUppercase = ref<boolean>(false);
+    const validLowercase = ref<boolean>(false);
+    const validNumber = ref<boolean>(false);
+    const validSpecial = ref<boolean>(false);
+    const isTermsModalVisible = ref<boolean>(false);
+    const isPrivacyModalVisible = ref<boolean>(false);
+
+    const isFormValid = computed(() => {
+      return (
+        formStore.firstName &&
+        formStore.lastName &&
+        formStore.companyName &&
+        isEmailValid.value &&
+        formStore.password &&
+        agreedToTerms.value &&
+        validatePasswordStrength()
+      );
+    });
+
+    const validatePasswordStrength = () => {
+      const password = formStore.password;
+      return (
+        (password.length >= 8) &&
+        (/[A-Z]/.test(password)) &&
+        (/[a-z]/.test(password)) &&
+        (/\d/.test(password)) &&
+        (/[@$!%*?&]/.test(password))
+      );
+    };
+
+    const strength = computed(() => {
+      let score = 0;
+      const password = formStore.password;
+      if (password.length >= 8) score += 20;
+      if (/[A-Z]/.test(password)) score += 20;
+      if (/[a-z]/.test(password)) score += 20;
+      if (/\d/.test(password)) score += 20;
+      if (/[@$!%*?&]/.test(password)) score += 20;
+
+      return score;
+    });
+
+    const progressClass1 = computed(() => {
+      if (strength.value === 0) return 'bg-transparent';
+      if (strength.value <= 40) return 'bg-evError';
+      if (strength.value <= 80) return 'bg-evWarning';
+      return 'bg-evSuccess';
+    });
+
+    const progressClass2 = computed(() => {
+      if (strength.value === 0) return 'bg-transparent';
+      if (strength.value <= 40) return 'bg-evLight';
+      if (strength.value <= 80) return 'bg-evWarning';
+      return 'bg-evSuccess';
+    });
+
+    const progressClass3 = computed(() => {
+      if (strength.value === 0) return 'bg-transparent';
+      if (strength.value <= 40) return 'bg-evLight';
+      if (strength.value <= 80) return 'bg-evLight';
+      return 'bg-evSuccess';
+    });
+
+    const handleSubmit = () => {
+      router.push('/addbillingmethod');
+    };
+
+    const togglePasswordVisibility = () => {
+      showPassword.value = !showPassword.value;
+    };
+
+    const validateEmail = () => {
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      isEmailValid.value = emailPattern.test(formStore.email);
+    };
+
+    const handleBlur = () => {
+      isBlurred.value = true;
+      validateEmail();
+    };
+
+    const validatePassword = () => {
+      const password = formStore.password;
+
+      passwordFeedback.value = password.length > 0;
+
+      validLength.value = password.length >= 8;
+      validUppercase.value = /[A-Z]/.test(password);
+      validLowercase.value = /[a-z]/.test(password);
+      validNumber.value = /\d/.test(password);
+      validSpecial.value = /[@$!%*?&]/.test(password);
+    };
+
+    const openTermsModal = () => {
+      isTermsModalVisible.value = true;
+    };
+
+    const closeTermsModal = () => {
+      isTermsModalVisible.value = false;
+    };
+
+    const openPrivacyModal = () => {
+      isPrivacyModalVisible.value = true;
+    };
+
+    const closePrivacyModal = () => {
+      isPrivacyModalVisible.value = false;
+    };
+
+    return {
+      formStore,
+      showPassword,
+      agreedToTerms,
+      passwordFeedback,
+      isEmailValid,
+      isBlurred,
+      validLength,
+      validUppercase,
+      validLowercase,
+      validNumber,
+      validSpecial,
+      isTermsModalVisible,
+      isPrivacyModalVisible,
+      isFormValid,
+      handleSubmit,
+      togglePasswordVisibility,
+      validateEmail,
+      handleBlur,
+      validatePassword,
+      openTermsModal,
+      closeTermsModal,
+      openPrivacyModal,
+      closePrivacyModal,
+      strength,
+      progressClass1,
+      progressClass2,
+      progressClass3,
+    };
+  },
+});
+</script>
+
 <template>
   <div class="flex flex-col h-full items-center justify-center min-h-screen bg-gray-200 p-2">
     <div class="flex-1 flex w-full max-w-1512px h-full max-h-982px">
@@ -11,37 +184,37 @@
           <!-- First Name -->
           <div class="mb-2.5 pr-1">
             <label class="block text-evGray text-sm mb-1" for="firstName">First Name<span class="text-evPurple text-base ml-1">*</span></label>
-            <input v-model="firstName" type="text" id="firstName" placeholder="Enter your first name" class="ev-input focus:ring-1 focus:ring-purple-800" maxlength="100" required />
+            <input v-model="formStore.firstName" type="text" id="firstName" placeholder="Enter your first name" class="ev-input focus:ring-1 focus:ring-purple-800" maxlength="100" required />
           </div>
 
           <!-- Last Name -->
           <div class="mb-2.5 pr-1">
             <label class="block text-evGray text-sm mb-1" for="lastName">Last Name<span class="text-evPurple text-base ml-1">*</span></label>
-            <input v-model="lastName" type="text" id="lastName" placeholder="Enter your last name" class="ev-input focus:ring-1 focus:ring-purple-800" maxlength="100" required />
+            <input v-model="formStore.lastName" type="text" id="lastName" placeholder="Enter your last name" class="ev-input focus:ring-1 focus:ring-purple-800" maxlength="100" required />
           </div>
 
           <!-- Company Name -->
           <div class="mb-2.5 pr-1">
             <label class="block text-evGray text-sm mb-1" for="companyName">Company Name<span class="text-evPurple text-base ml-1">*</span></label>
-            <input v-model="companyName" type="text" id="companyName" placeholder="Enter your company name" class="ev-input focus:ring-1 focus:ring-purple-800" maxlength="100" required />
+            <input v-model="formStore.companyName" type="text" id="companyName" placeholder="Enter your company name" class="ev-input focus:ring-1 focus:ring-purple-800" maxlength="100" required />
           </div>
 
           <!-- Email -->
           <div class="mb-2.5 pr-1">
             <label class="block text-evGray text-sm mb-1" for="email">Email<span class="text-evPurple text-base ml-1">*</span></label>
             <input
-              v-model="email"
+              v-model="formStore.email"
               type="email"
               id="email"
               placeholder="Enter your email"
               class="ev-input focus:ring-1 focus:ring-purple-800"
               @blur="handleBlur"
               @focus="isBlurred = true"
-              :class="{'border-red-500': !isEmailValid && isBlurred && email !== ''}"
+              :class="{'border-red-500': !isEmailValid && isBlurred && formStore.email !== ''}"
               maxlength="100"
               required
             />
-            <p v-if="!isEmailValid && isBlurred && email !== ''" class="text-evError text-xs mt-1 font-semibold">
+            <p v-if="!isEmailValid && isBlurred && formStore.email !== ''" class="text-evError text-xs mt-1 font-semibold">
               Invalid email format
             </p>
           </div>
@@ -67,7 +240,7 @@
 
             </div>
             <input
-              v-model="password"
+              v-model="formStore.password"
               :type="showPassword ? 'text' : 'password'"
               id="password"
               placeholder="Enter your password"
@@ -75,7 +248,7 @@
               maxlength="100"
               required
               @input="validatePassword"
-              @blur="Blurpassword"
+              @blur="passwordFeedback=false"
             />
 
             <button type="button" @click="togglePasswordVisibility" class="absolute top-38px right-0 pr-3 flex items-center">
@@ -118,7 +291,7 @@
           <!-- Referral Code -->
           <div class="mb-5 pr-1">
             <label class="block text-evGray text-sm mb-1" for="referralCode">Referral Code</label>
-            <input v-model="referralCode" type="text" id="referralCode" placeholder="Enter referral code" class="ev-input focus:ring-1 focus:ring-purple-800" maxlength="12"/>
+            <input v-model="formStore.referralCode" type="text" id="referralCode" placeholder="Enter referral code" class="ev-input focus:ring-1 focus:ring-purple-800" maxlength="12"/>
           </div>
 
           <!-- Checkbox for Terms and Conditions -->
@@ -158,152 +331,3 @@
     <PrivacyAndPolicyModal :isVisible="isPrivacyModalVisible" @close="closePrivacyModal" />
   </div>
 </template>
-
-<script>
-import EVPurpleButton from '@/components/common/EVPurpleButton.vue';
-import TermsAndConditionsModal from '@/components/common/TermsAndConditionsModal.vue';
-import PrivacyAndPolicyModal from '@/components/common/TermsAndConditionsModal.vue';
-import Description from '@/components/registration/Description.vue';
-import FooterText from '@/components/registration/FooterText.vue';
-
-export default {
-  components: {
-    EVPurpleButton,
-    Description,
-    FooterText,
-    TermsAndConditionsModal,
-    PrivacyAndPolicyModal,
-  },
-  
-  data() {
-    return {
-      firstName: '',
-      lastName: '',
-      companyName: '',
-      email: '',
-      password: '',
-      referralCode: '',
-      isEmailValid: true,
-      isBlurred: false,
-      showPassword: false,
-      agreedToTerms: false,
-      validLength: false,
-      validUppercase: false,
-      validLowercase: false,
-      validNumber: false,
-      validSpecial: false,
-      passwordFeedback: false,
-      isTermsModalVisible: false,
-      isPrivacyModalVisible: false,
-    };
-  },
-  
-  computed: {
-    isFormValid() {
-      return (
-        this.firstName &&
-        this.lastName &&
-        this.companyName &&
-        this.isEmailValid &&
-        this.password &&
-        this.agreedToTerms &&
-        this.validLength &&
-        this.validUppercase &&
-        this.validLowercase &&
-        this.validNumber &&
-        this.validSpecial
-      );
-    },
-    strength() {
-      let score = 0;
-      if (this.password.length >= 8) score += 20; // Length
-      if (/[A-Z]/.test(this.password)) score += 20; // Uppercase
-      if (/[a-z]/.test(this.password)) score += 20; // Lowercase
-      if (/\d/.test(this.password)) score += 20; // Number
-      if (/[@$!%*?&]/.test(this.password)) score += 20; // Special character
-
-      return score;
-    },
-    progressClass1() {
-      if (this.strength == 0) return 'bg-transparent'
-      if (this.strength <= 40) return 'bg-evError';
-      if (this.strength <= 80) return 'bg-evWarning';
-      return 'bg-evSuccess';
-    },
-    progressClass2() {
-      if (this.strength == 0) return 'bg-transparent'
-      if (this.strength <= 40) return 'bg-evLight';
-      if (this.strength <= 80) return 'bg-evWarning';
-      return 'bg-evSuccess';
-    },
-    progressClass3() {
-      if (this.strength == 0) return 'bg-transparent'
-      if (this.strength <= 40) return 'bg-evLight';
-      if (this.strength <= 80) return 'bg-evLight';
-      return 'bg-evSuccess';
-    },
-  },
-  
-  methods: {
-    handleSubmit() {
-      // Your submit logic here
-      console.log('Form submitted with:', {
-        firstName: this.firstName,
-        lastName: this.lastName,
-        companyName: this.companyName,
-        email: this.email,
-        password: this.password,
-        referralCode: this.referralCode,
-      });
-    },
-
-    togglePasswordVisibility() {
-      this.showPassword = !this.showPassword;
-    },
-
-    validateEmail(email) {
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      this.isEmailValid = emailPattern.test(this.email);
-    },
-
-    handleBlur() {
-      this.isBlurred = true;
-      this.validateEmail();
-    },
-
-    validatePassword() {
-      const passwordPattern = {
-        length: /.{8,}/,
-        uppercase: /[A-Z]/,
-        lowercase: /[a-z]/,
-        number: /[0-9]/,
-        special: /[!@#$%^&*(),.?":{}|<>]/, // Adjust special characters as needed
-      };
-
-      this.validLength = passwordPattern.length.test(this.password);
-      this.validUppercase = passwordPattern.uppercase.test(this.password);
-      this.validLowercase = passwordPattern.lowercase.test(this.password);
-      this.validNumber = passwordPattern.number.test(this.password);
-      this.validSpecial = passwordPattern.special.test(this.password);
-      
-      // Show the feedback tooltip if the password is being typed
-      this.passwordFeedback = this.password.length > 0;
-    },
-    Blurpassword() {
-      this.passwordFeedback = false
-    },
-    openTermsModal() {
-      this.isTermsModalVisible = true;
-    },
-    closeTermsModal() {
-      this.isTermsModalVisible = false;
-    },
-    openPrivacyModal() {
-      this.isPrivacyModalVisible = true;
-    },
-    closePrivacyModal() {
-      this.isPrivacyModalVisible = false;
-    },
-  },
-};
-</script>

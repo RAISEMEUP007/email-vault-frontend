@@ -131,15 +131,22 @@ export default defineComponent({
 
     const handleSubmit = async () => {
       if (!isFormValid.value) {
-        console.error('Form is invalid');
-        return;
+          console.error('Form is invalid');
+          return;
       }
 
       try {
-        const response = await axiosInstance.post('/api/signup', {
-          formStore
+        const response = await axiosInstance.post('/signup', { // Removed '/api'
+          firstName: formStore.firstName,
+          lastName: formStore.lastName,
+          companyName: formStore.companyName,
+          email: formStore.email,
+          password: formStore.password,
         });
+
+        console.log('Form submitted successfully:', response.data);
       } catch (error) {
+        console.error('Error submitting form:', error);
       }
     };
 

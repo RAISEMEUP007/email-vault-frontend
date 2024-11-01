@@ -10,6 +10,16 @@ export default defineConfig({
     vue(),
     vueJsx(),
   ],
+  server: {
+    proxy: {
+      // This will help to avoid CORS issues (if necessary)
+      '/api': {
+        target: process.env.VITE_API_URL,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''), // Rewrites the path if needed
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

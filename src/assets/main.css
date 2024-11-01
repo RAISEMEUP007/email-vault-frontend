@@ -1,35 +1,68 @@
-@import './base.css';
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+html, body{
+  min-width: 100%;
+  min-height: 100%;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+#app{
+  min-height: 100%;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+.gradient-bg {
+  background: linear-gradient(to top right, #571158, #8D348E);
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+.ev-input {
+  appearance: none;
+  font-size: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  outline: none;
+  transition: border-color 0.1s ease;
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+.ev-input:focus {
+  border-color: #571158;
+  background: none;
+}
+
+.ev-input:placeholder-shown {
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+.ev-input:not(:placeholder-shown) {
+  border-color: #571158;
+}
+
+input[type='email'].valid {
+  border-color: #571158;
+}
+
+input[type='email'].invalid {
+  border-color: #dc3545;
+}
+
+/* Custom scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px; /* Width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #D9D9D9; /* Background of the scrollbar track */
+  border-radius: 10px; /* Round corners */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #571158; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Round corners */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #8D348E; /* Color of the scrollbar thumb on hover */
+}
+
+/* Hiding root scrollbars and arrows */
+.custom-scrollbar::-webkit-scrollbar-button {
+  display: none; /* Hides the arrow buttons */
 }
